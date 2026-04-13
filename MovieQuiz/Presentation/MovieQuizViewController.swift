@@ -26,24 +26,15 @@ final class MovieQuizViewController: UIViewController {
     }
     
     @IBAction private func noButtonClicked(_ sender: Any) {
-        if currentQuestion.correctAnswer {
-            showAnswerResult(isCorrect: false)
-        }else{
-            showAnswerResult(isCorrect: true)
-        }
+        showAnswerResult(isCorrect: !currentQuestion.correctAnswer)
     }
     
     @IBAction private func yesButtonClicked(_ sender: Any) {
-        if currentQuestion.correctAnswer {
-            correctAnswers += 1
-            showAnswerResult(isCorrect: true)
-        }else{
-            showAnswerResult(isCorrect: false)
-        }
+        showAnswerResult(isCorrect: currentQuestion.correctAnswer)
     }
     
     private func convert(model: QuizQuestion) -> QuizStepViewModel {
-        return QuizStepViewModel(
+        QuizStepViewModel(
             image: UIImage(named: model.image) ?? UIImage(),
             question: model.text,
             questionNumber: "\(currentQuestionIndex + 1)/\(questions.count)"
@@ -54,6 +45,8 @@ final class MovieQuizViewController: UIViewController {
         previewImage.image = step.image
         questionLabel.text = step.question
         indexLabel.text = step.questionNumber
+        YesButton.isEnabled = true
+        NoButton.isEnabled = true
     }
     
     private func showResultAlert(quiz result: QuizResultViewModel) {
@@ -79,6 +72,9 @@ final class MovieQuizViewController: UIViewController {
     }
     
     private func showAnswerResult(isCorrect: Bool){
+        if isCorrect {
+            correctAnswers += 1
+        }
         previewImage.layer.masksToBounds = true
         previewImage.layer.borderWidth = 8
         previewImage.layer.borderColor = isCorrect ? UIColor.ypGreen.cgColor : UIColor.ypRed.cgColor
@@ -91,19 +87,18 @@ final class MovieQuizViewController: UIViewController {
             self.previewImage.layer.borderWidth = 0.0
             self.showNextQiuestionOrResult()
         }
-        
-        
     }
     
     private func showNextQiuestionOrResult(){
         if currentQuestionIndex == questions.count - 1 {
-            showResultAlert(quiz: QuizResultViewModel(title: "Этот раунд окончен!",
-                                           text: "Ваш результат: \(correctAnswers)/\(questions.count)",
-                                           buttonText: "Сыграть ещё раз"))
+            let modalTitle: String = "Этот раунд окончен!"
+            let modalMessage: String = "Ваш результат: \(correctAnswers)/\(questions.count)"
+            let modalButtonLabel: String = "Сыграть еще раз"
+            showResultAlert(quiz: QuizResultViewModel(title: modalTitle,
+                                           text: modalMessage,
+                                           buttonText: modalButtonLabel))
         }
         else {
-            YesButton.isEnabled = true
-            NoButton.isEnabled = true
             currentQuestionIndex += 1
             currentQuestion = questions[currentQuestionIndex]
             let quizStep = convert(model: currentQuestion)
