@@ -5,7 +5,7 @@
 //  Created by Adilkhan on 28/4/26.
 //
 
-class QuestionFactory {
+class QuestionFactory: QuestionFactoryProtocol{
     // массив mock-вопросов
     private let questions: [QuizQuestion] = [
         QuizQuestion(
