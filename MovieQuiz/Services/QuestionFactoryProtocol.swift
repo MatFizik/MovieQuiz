@@ -6,5 +6,6 @@
 //
 
 protocol QuestionFactoryProtocol {
-    func requestQuestion() -> QuizQuestion?
+    
+    func requestQuestion()
 }

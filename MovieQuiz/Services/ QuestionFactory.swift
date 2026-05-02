@@ -6,6 +6,12 @@
 //
 
 class QuestionFactory: QuestionFactoryProtocol{
+    
+    weak var delegate: QuestionFactoryDelegate?
+    
+    init(delegate: QuestionFactoryDelegate){
+        self.delegate = delegate
+    }
     // массив mock-вопросов
     private let questions: [QuizQuestion] = [
         QuizQuestion(
@@ -50,12 +56,13 @@ class QuestionFactory: QuestionFactoryProtocol{
         correctAnswer: false),
     ]
     
-    func requestQuestion() -> QuizQuestion? {
+    func requestQuestion() {
         guard let index = (0..<questions.count).randomElement() else {
-            return nil
+            delegate?.didReceiveNextQuestion(question: nil)
+            return
         }
         
-        return questions[safe: index]
+        delegate?.didReceiveNextQuestion(question: questions[safe: index])
     }
 
 }
