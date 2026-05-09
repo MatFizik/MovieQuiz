@@ -18,6 +18,8 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     private var questionFactory: QuestionFactoryProtocol?
     private var currentQuestion: QuizQuestion?
     
+    private var alertPresenter = AlertPresenter()
+    
     // MARK: -QuestionFactoryDelegate
     func didReceiveNextQuestion(question: QuizQuestion?) {
         guard let question = question else { return }
@@ -62,25 +64,6 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         NoButton.isEnabled = true
     }
     
-    private func showResultAlert(quiz result: QuizResultViewModel) {
-        let alert = UIAlertController(title: result.title,
-                                      message: result.text,
-                                      preferredStyle: .alert)
-        
-        let action = UIAlertAction(title: result.buttonText,
-                                   style: .default) { [weak self] _ in
-            guard let self = self else {return}
-            self.currentQuestionIndex = 0
-            self.correctAnswers = 0
-            
-            questionFactory?.requestQuestion()
-        }
-        
-        alert.addAction(action)
-        
-        self.present(alert, animated: true, completion: nil)
-    }
-    
     private func showAnswerResult(isCorrect: Bool){
         if isCorrect {
             correctAnswers += 1
@@ -116,5 +99,16 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
             let quizStep = convert(model: currentQuestion)
             showQuestion(quiz: quizStep)
         }
+    }
+    
+    
+    private func showResultAlert(quiz result: QuizResultViewModel) {
+            let alertModel = AlertModel(title: result.title, message: result.text, buttonText: result.buttonText) { [weak self] in
+            guard let self = self else {return}
+            self.currentQuestionIndex = 0
+            self.correctAnswers = 0
+            questionFactory?.requestQuestion()
+        }
+        alertPresenter.showAlert(data: alertModel, viewController: self)
     }
 }
