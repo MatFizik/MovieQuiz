@@ -13,6 +13,6 @@ struct GameResultModel{
     let date: Date
     
     func isBetter(to another: GameResultModel) -> Bool {
-        correct > another.correct || another.total != total
+        correct > another.correct
     }
 }
