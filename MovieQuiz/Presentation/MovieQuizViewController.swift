@@ -20,6 +20,8 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     
     private var alertPresenter = AlertPresenter()
     
+    private var statisticService: StatisticServiceProtocol?
+    
     // MARK: -QuestionFactoryDelegate
     func didReceiveNextQuestion(question: QuizQuestion?) {
         guard let question = question else { return }
@@ -35,7 +37,8 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         super.viewDidLoad()
         
         questionFactory = QuestionFactory(delegate: self)
-
+        
+        statisticService = StatisticService()
         
         questionFactory?.requestQuestion()
     }
@@ -85,8 +88,16 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     
     private func showNextQuestionOrResult(){
         if currentQuestionIndex == questionsAmount - 1 {
+            statisticService?.store(save: GameResultModel(
+                correct: correctAnswers, total: questionsAmount, date: Date()
+            ))
+            
+            let currentDate: String = statisticService?.bestGame.date.dateTimeString ?? ""
             let modalTitle: String = "Этот раунд окончен!"
-            let modalMessage: String = "Ваш результат: \(correctAnswers)/\(questionsAmount)"
+            let modalMessage: String = "Ваш результат: \(correctAnswers)/\(questionsAmount)\n" +
+            "Количество сыгранных игр: \(statisticService?.gamesCount ?? 1)\n" +
+            "Рекорд: \(statisticService?.bestGame.correct ?? correctAnswers)/\(statisticService?.bestGame.total ?? questionsAmount) (\(currentDate))\n" +
+            "Средняя точность: \(String(format: "%.2f", statisticService?.totalAccuracy ?? 0.0))%"
             let modalButtonLabel: String = "Сыграть еще раз"
             showResultAlert(quiz: QuizResultViewModel(title: modalTitle,
                                            text: modalMessage,
