@@ -36,7 +36,7 @@ final class StatisticService: StatisticServiceProtocol {
     var totalAccuracy: Double {
         get {
             if totalCorrectAnswers != 0 && totalQuestionsAsked != 0 {
-                Double(totalCorrectAnswers) / Double(totalQuestionsAsked)
+                Double((Double(totalCorrectAnswers) / Double(totalQuestionsAsked)) * 100)
             } else {
                 Double(0)
             }
@@ -44,15 +44,10 @@ final class StatisticService: StatisticServiceProtocol {
     }
     
     func store(save gameResult: GameResultModel) {
-        print(gameResult.correct)
-        print(gameResult.total)
         totalCorrectAnswers += gameResult.correct
         totalQuestionsAsked += gameResult.total
         gamesCount += 1
-        
-        print(totalCorrectAnswers)
-        print(totalQuestionsAsked)
-        
+    
         if gameResult.isBetter(to: bestGame) {
             bestGame = GameResultModel(correct: gameResult.correct,
                                        total: gameResult.total,

@@ -8,10 +8,7 @@
 class QuestionFactory: QuestionFactoryProtocol{
     
     weak var delegate: QuestionFactoryDelegate?
-    
-    init(delegate: QuestionFactoryDelegate){
-        self.delegate = delegate
-    }
+
     // массив mock-вопросов
     private let questions: [QuizQuestion] = [
         QuizQuestion(
@@ -55,14 +52,18 @@ class QuestionFactory: QuestionFactoryProtocol{
         text: "Рейтинг этого фильма больше чем 6?",
         correctAnswer: false),
     ]
+    private var shaffleQueue: [QuizQuestion]
+
+    init(delegate: QuestionFactoryDelegate){
+        self.delegate = delegate
+        self.shaffleQueue = questions.shuffled()
+    }
     
     func requestQuestion() {
-        guard let index = (0..<questions.count).randomElement() else {
-            delegate?.didReceiveNextQuestion(question: nil)
-            return
+        if shaffleQueue.isEmpty {
+            shaffleQueue = questions.shuffled()
         }
-        
-        delegate?.didReceiveNextQuestion(question: questions[safe: index])
+        let next = shaffleQueue.removeFirst()
+        delegate?.didReceiveNextQuestion(question: next)
     }
-
 }
