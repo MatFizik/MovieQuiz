@@ -114,19 +114,25 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="x3G-b7-z0L">
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="YP Black"/>
                         <constraints>
                             <constraint firstItem="EvJ-Ux-fhu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="6nG-fP-xpq"/>
+                            <constraint firstItem="x3G-b7-z0L" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="G93-oK-5Ii"/>
                             <constraint firstItem="EvJ-Ux-fhu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="aam-cS-sK3"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="EvJ-Ux-fhu" secondAttribute="bottom" id="ahu-ig-tOi"/>
+                            <constraint firstItem="x3G-b7-z0L" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cnR-hP-GjA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="EvJ-Ux-fhu" secondAttribute="trailing" constant="20" id="d1h-hA-89c"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="NoButton" destination="7AW-wC-PVt" id="rsq-Ai-dzm"/>
                         <outlet property="YesButton" destination="mEc-JP-3Au" id="6n5-Yv-wlk"/>
+                        <outlet property="activityIndicator" destination="x3G-b7-z0L" id="nPB-z5-oxs"/>
                         <outlet property="indexLabel" destination="3Xf-vE-zHn" id="kaM-YQ-IVM"/>
                         <outlet property="previewImage" destination="PGD-GA-VbA" id="jv2-eS-S6L"/>
                         <outlet property="questionLabel" destination="dSF-fU-wtO" id="Y38-nb-mt8"/>
