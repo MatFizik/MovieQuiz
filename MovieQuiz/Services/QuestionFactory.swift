@@ -78,7 +78,6 @@ class QuestionFactory: QuestionFactoryProtocol{
         DispatchQueue.global().async { [weak self] in
             guard let self = self else { return }
             
-            //guard let movie = self.movies[safe: 0] else { return }
             guard !self.movies.isEmpty else { return }
             let movie = self.movies.first!
             
@@ -92,9 +91,16 @@ class QuestionFactory: QuestionFactoryProtocol{
             }
             
             let rating = Float(movie.rating) ?? 0
+            let text: String
+            let correctAnswer: Bool
             
-            let text = "Рейтинг этого фильма больше чем 8?"
-            let correctAnswer = rating > 8
+            if Bool.random() {
+                text = "Рейтинг этого фильма больше чем \(Int(rating.rounded()))?"
+                correctAnswer = rating > rating.rounded()
+            } else {
+                text = "Рейтинг этого фильма меньше чем \(Int(rating.rounded()))?"
+                correctAnswer = rating < rating.rounded()
+            }
             
             let question = QuizQuestion(imageData: imageData,
                                          text: text,
