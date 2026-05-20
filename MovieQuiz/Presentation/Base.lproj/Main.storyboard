@@ -57,7 +57,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Рейтинг этого фильма меньше, чем 5?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSF-fU-wtO" userLabel="QuestionLabel">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Рейтинг этого фильма меньше, чем 8?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSF-fU-wtO" userLabel="QuestionLabel">
                                         <rect key="frame" x="0.0" y="624.5" width="374" height="17.5"/>
                                         <fontDescription key="fontDescription" name="YSDisplay-Bold" family="YS Display" pointSize="23"/>
                                         <color key="textColor" name="YP White"/>
@@ -114,19 +114,26 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="x3G-b7-z0L">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                                <color key="color" name="YP Green"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="YP Black"/>
                         <constraints>
                             <constraint firstItem="EvJ-Ux-fhu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="6nG-fP-xpq"/>
+                            <constraint firstItem="x3G-b7-z0L" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="G93-oK-5Ii"/>
                             <constraint firstItem="EvJ-Ux-fhu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="aam-cS-sK3"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="EvJ-Ux-fhu" secondAttribute="bottom" id="ahu-ig-tOi"/>
+                            <constraint firstItem="x3G-b7-z0L" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cnR-hP-GjA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="EvJ-Ux-fhu" secondAttribute="trailing" constant="20" id="d1h-hA-89c"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="NoButton" destination="7AW-wC-PVt" id="rsq-Ai-dzm"/>
                         <outlet property="YesButton" destination="mEc-JP-3Au" id="6n5-Yv-wlk"/>
+                        <outlet property="activityIndicator" destination="x3G-b7-z0L" id="nPB-z5-oxs"/>
                         <outlet property="indexLabel" destination="3Xf-vE-zHn" id="kaM-YQ-IVM"/>
                         <outlet property="previewImage" destination="PGD-GA-VbA" id="jv2-eS-S6L"/>
                         <outlet property="questionLabel" destination="dSF-fU-wtO" id="Y38-nb-mt8"/>
@@ -140,6 +147,9 @@
     <resources>
         <namedColor name="YP Black">
             <color red="0.10196078431372549" green="0.10588235294117647" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="YP Green">
+            <color red="0.37647058823529411" green="0.76078431372549016" blue="0.55686274509803924" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="YP White">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
