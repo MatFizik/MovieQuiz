@@ -18,6 +18,7 @@
 		03C01EA72FBB5E50005ACABD /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C01EA62FBB5E44005ACABD /* NetworkClient.swift */; };
 		03C01EAA2FBB619C005ACABD /* MostPopularMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C01EA92FBB619B005ACABD /* MostPopularMovies.swift */; };
 		03C01EAC2FBB6279005ACABD /* MoviesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C01EAB2FBB6278005ACABD /* MoviesLoader.swift */; };
+		03C01EB02FBE2912005ACABD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C01EAF2FBE290C005ACABD /* Constants.swift */; };
 		03C52EDD2FAFA54C002BF0EF /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C52EDC2FAFA546002BF0EF /* AlertModel.swift */; };
 		03C52EDF2FAFA5CA002BF0EF /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C52EDE2FAFA5BE002BF0EF /* AlertPresenter.swift */; };
 		03C52EE12FAFB518002BF0EF /* StatisticServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C52EE02FAFB4FC002BF0EF /* StatisticServiceProtocol.swift */; };
@@ -46,6 +47,7 @@
 		03C01EA62FBB5E44005ACABD /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		03C01EA92FBB619B005ACABD /* MostPopularMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostPopularMovies.swift; sourceTree = "<group>"; };
 		03C01EAB2FBB6278005ACABD /* MoviesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesLoader.swift; sourceTree = "<group>"; };
+		03C01EAF2FBE290C005ACABD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		03C52EDC2FAFA546002BF0EF /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
 		03C52EDE2FAFA5BE002BF0EF /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		03C52EE02FAFB4FC002BF0EF /* StatisticServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticServiceProtocol.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 		ADF0CF75283FDAA10075F54D /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				03C01EAF2FBE290C005ACABD /* Constants.swift */,
 				AD5EE5DD284D7887003966EF /* UIColor+Extensions.swift */,
 				AD7AFA542836189F00399704 /* Array+Extensions.swift */,
 				AD77F5732857F8810062FB14 /* Date+Extensions.swift */,
@@ -265,6 +268,7 @@
 				03723B842FA4C4EA00D3BA3D /* QuestionFactoryProtocol.swift in Sources */,
 				03723B862FA66CB600D3BA3D /* QuestionFactoryDelegate.swift in Sources */,
 				AD1ABAB62831907B00B3E448 /* MovieQuizViewController.swift in Sources */,
+				03C01EB02FBE2912005ACABD /* Constants.swift in Sources */,
 				03723A422F9FE46800D3BA3D /* QuizStepViewModel.swift in Sources */,
 				03723A462F9FE47C00D3BA3D /* QuizQuestion.swift in Sources */,
 				03C52EE12FAFB518002BF0EF /* StatisticServiceProtocol.swift in Sources */,
