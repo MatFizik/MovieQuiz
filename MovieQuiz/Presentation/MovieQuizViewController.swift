@@ -27,6 +27,8 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         
         statisticService = StatisticService()
         
+        presenter.viewController = self
+        
         showLoadingIndicator()
         questionFactory?.loadData()
     }
@@ -60,11 +62,14 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     // MARK: - Private Methods
     
     @IBAction private func noButtonClicked(_ sender: Any) {
-        showAnswerResult(isCorrect: !(currentQuestion?.correctAnswer ?? false))
+        presenter.currentQuestion = currentQuestion
+        presenter.noButtonClicked()
+
     }
     
     @IBAction private func yesButtonClicked(_ sender: Any) {
-        showAnswerResult(isCorrect: currentQuestion?.correctAnswer ?? true)
+        presenter.currentQuestion = currentQuestion
+        presenter.yesButtonClicked()
     }
     
     private func hideLoadingIndicator() {
@@ -107,7 +112,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         NoButton.isEnabled = true
     }
     
-    private func showAnswerResult(isCorrect: Bool) {
+    func showAnswerResult(isCorrect: Bool) {
         if isCorrect {
             correctAnswers += 1
         }
