@@ -9,15 +9,19 @@ import UIKit
 
 final class AlertPresenter {
     func showAlert(data: AlertModel, viewController: UIViewController) {
-        let alert = UIAlertController(title: data.title,
-                                      message: data.message,
-                                      preferredStyle: .alert)
+        let alert = UIAlertController(
+            title: data.title,
+            message: data.message,
+            preferredStyle: .alert)
         
-        let action = UIAlertAction(title: data.buttonText,
-                                   style: .default) { _ in
+        let action = UIAlertAction(
+            title: data.buttonText,
+            style: .default) { _ in
             data.completion()
         }
         alert.addAction(action)
+        action.setValue("AlertButton", forKey: "accessibilityIdentifier")
+
         
         viewController.present(alert, animated: true, completion: nil)
     }
