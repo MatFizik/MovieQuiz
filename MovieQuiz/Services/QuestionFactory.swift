@@ -13,40 +13,40 @@ class QuestionFactory: QuestionFactoryProtocol{
     private weak var delegate: QuestionFactoryDelegate?
     
     private var movies: [MostPopularMovie] = []
-
+    
     // массив mock-вопросов
     //private let questions: [QuizQuestion] = [
-//        QuizQuestion(
-//        image: "The Godfather",
-//        text: "Рейтинг этого фильма больше чем 6?",
-//        correctAnswer: true),
-//        QuizQuestion(
-//        image: "The Dark Knight",
-//        text: "Рейтинг этого фильма больше чем 6?",
-//        correctAnswer: true),
-//        QuizQuestion(
-//        image: "Kill Bill",
-//        text: "Рейтинг этого фильма больше чем 6?",
-//        correctAnswer: true),
-//        QuizQuestion(
-//        image: "The Avengers",
-//        text: "Рейтинг этого фильма больше чем 6?",
-//        correctAnswer: true),
-//        QuizQuestion(
-//        image: "Deadpool",
-//        text: "Рейтинг этого фильма больше чем 6?",
-//        correctAnswer: true),
-//        QuizQuestion(
-//        image: "The Green Knight",
-//        text: "Рейтинг этого фильма больше чем 6?",
-//        correctAnswer: true),
-//        QuizQuestion(
-//        image: "Old",
-//        text: "Рейтинг этого фильма больше чем 6?",
-//        correctAnswer: false),
-//        QuizQuestion(
-//        image: "The Ice Age Adventures of Buck Wild",
-//        text: "Рейтинг этого фильма больше чем 6?",
+    //        QuizQuestion(
+    //        image: "The Godfather",
+    //        text: "Рейтинг этого фильма больше чем 6?",
+    //        correctAnswer: true),
+    //        QuizQuestion(
+    //        image: "The Dark Knight",
+    //        text: "Рейтинг этого фильма больше чем 6?",
+    //        correctAnswer: true),
+    //        QuizQuestion(
+    //        image: "Kill Bill",
+    //        text: "Рейтинг этого фильма больше чем 6?",
+    //        correctAnswer: true),
+    //        QuizQuestion(
+    //        image: "The Avengers",
+    //        text: "Рейтинг этого фильма больше чем 6?",
+    //        correctAnswer: true),
+    //        QuizQuestion(
+    //        image: "Deadpool",
+    //        text: "Рейтинг этого фильма больше чем 6?",
+    //        correctAnswer: true),
+    //        QuizQuestion(
+    //        image: "The Green Knight",
+    //        text: "Рейтинг этого фильма больше чем 6?",
+    //        correctAnswer: true),
+    //        QuizQuestion(
+    //        image: "Old",
+    //        text: "Рейтинг этого фильма больше чем 6?",
+    //        correctAnswer: false),
+    //        QuizQuestion(
+    //        image: "The Ice Age Adventures of Buck Wild",
+    //        text: "Рейтинг этого фильма больше чем 6?",
     //        correctAnswer: false),
     //        QuizQuestion(
     //        image: "Tesla",
@@ -57,21 +57,21 @@ class QuestionFactory: QuestionFactoryProtocol{
     //        text: "Рейтинг этого фильма больше чем 6?",
     //        correctAnswer: false),
     //    ]
-//    private var shaffleQueue: [QuizQuestion]
-
+    //    private var shaffleQueue: [QuizQuestion]
+    
     init(moviesLoader: MoviesLoading, delegate: QuestionFactoryDelegate){
         self.moviesLoader = moviesLoader
         self.delegate = delegate
-  //      self.shaffleQueue = questions.shuffled()
+        //      self.shaffleQueue = questions.shuffled()
     }
     
     func requestQuestion() {
         requestNextQuestion()
-//        if shaffleQueue.isEmpty {
-//            shaffleQueue = questions.shuffled()
-//        }
-//        let next = shaffleQueue.removeFirst()
-//        delegate?.didReceiveNextQuestion(question: next)
+        //        if shaffleQueue.isEmpty {
+        //            shaffleQueue = questions.shuffled()
+        //        }
+        //        let next = shaffleQueue.removeFirst()
+        //        delegate?.didReceiveNextQuestion(question: next)
     }
     
     internal func requestNextQuestion() {
@@ -83,8 +83,8 @@ class QuestionFactory: QuestionFactoryProtocol{
             
             
             var imageData = Data()
-           
-           do {
+            
+            do {
                 imageData = try Data(contentsOf: movie.resizedImageURL)
             } catch {
                 print("Failed to load image")
@@ -103,8 +103,8 @@ class QuestionFactory: QuestionFactoryProtocol{
             }
             
             let question = QuizQuestion(imageData: imageData,
-                                         text: text,
-                                         correctAnswer: correctAnswer)
+                                        text: text,
+                                        correctAnswer: correctAnswer)
             
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }

@@ -13,10 +13,10 @@ final class MoviesLoaderTests: XCTestCase {
         // Given
         let stubNetworkClient = StubNetworkClient(emulateError: false)
         let loader = MoviesLoader(networkClient: stubNetworkClient)
-
+        
         // When
         let exp = expectation(description: "Loading expectation")
-
+        
         loader.fetchMovies { result in
             // Then
             switch result {
@@ -27,7 +27,7 @@ final class MoviesLoaderTests: XCTestCase {
                 XCTFail("Unexpected failure")
             }
         }
-
+        
         waitForExpectations(timeout: 1)
     }
     
@@ -37,7 +37,7 @@ final class MoviesLoaderTests: XCTestCase {
         let loader = MoviesLoader(networkClient: stubNetworkClient)
         
         //When
-        let expectation = expectation(description: "Loading expactation")
+        let expectation = expectation(description: "Loading expectation")
         
         loader.fetchMovies{ result in
             switch result {

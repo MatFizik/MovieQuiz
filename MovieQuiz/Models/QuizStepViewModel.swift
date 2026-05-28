@@ -8,7 +8,7 @@
 import Foundation
 
 struct QuizStepViewModel {
-    let image: Data
+    let imageData: Data
     let question: String
     let questionNumber: String
 }

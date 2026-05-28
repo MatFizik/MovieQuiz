@@ -11,7 +11,7 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     private var alertPresenter = AlertPresenter()
-    private var presenter: MovieQuizPresenter!
+    private var presenter: MovieQuizPresenter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +21,7 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
     
     // MARK: - Public Methods
     func showQuestion(quiz step: QuizStepViewModel){
-        let modelViewImage = UIImage(data: step.image) ?? UIImage()
+        let modelViewImage = UIImage(data: step.imageData) ?? UIImage()
         
         previewImage.image = modelViewImage
         previewImage.layer.borderColor = UIColor.clear.cgColor
@@ -42,11 +42,11 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
     }
     
     func showResultAlert(quiz result: QuizResultViewModel) {
-            let alertModel = AlertModel(title: result.title, message: result.text, buttonText: result.buttonText) { [weak self] in
+        let alertModel = AlertModel(title: result.title, message: result.text, buttonText: result.buttonText) { [weak self] in
             guard let self = self else {return}
-                presenter.restartGame()
-                showLoadingIndicator()
-            }
+            presenter?.restartGame()
+            showLoadingIndicator()
+        }
         alertPresenter.showAlert(data: alertModel, viewController: self)
     }
     
@@ -56,7 +56,7 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
         let alertModel = AlertModel(title: "Ошибка", message: message, buttonText: "Попробовать ещё раз") {[weak self] in
             guard let self = self else {return}
             
-            presenter.restartGame()
+            presenter?.restartGame()
             showLoadingIndicator()
         }
         
@@ -78,11 +78,11 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
     }
     // MARK: - Private Methods
     @IBAction private func noButtonClicked(_ sender: Any) {
-        presenter.noButtonClicked()
-
+        presenter?.didAnswer(isYes: false)
+        
     }
     
     @IBAction private func yesButtonClicked(_ sender: Any) {
-        presenter.yesButtonClicked()
+        presenter?.didAnswer(isYes: true)
     }
 }

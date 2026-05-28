@@ -18,7 +18,7 @@ struct MoviesLoader: MoviesLoading {
     init(networkClient: NetworkRoutingProtocol = NetworkClient()) {
         self.networkClient = networkClient
     }
-
+    
     
     private var mostPopularMoviesUrl: URL {
         guard let url = URL(string: movieUrlString + apiKey) else {
