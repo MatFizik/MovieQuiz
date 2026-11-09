@@ -47,7 +47,7 @@ final class StatisticService: StatisticServiceProtocol {
         totalCorrectAnswers += gameResult.correct
         totalQuestionsAsked += gameResult.total
         gamesCount += 1
-    
+        
         if gameResult.isBetter(to: bestGame) {
             bestGame = GameResultModel(correct: gameResult.correct,
                                        total: gameResult.total,

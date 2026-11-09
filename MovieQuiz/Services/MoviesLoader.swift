@@ -12,9 +12,13 @@ protocol MoviesLoading {
 }
 
 struct MoviesLoader: MoviesLoading {
-    private let networkClient = NetworkClient()
+    private let networkClient: NetworkRoutingProtocol
     private let decoder = JSONDecoder()
-
+    
+    init(networkClient: NetworkRoutingProtocol = NetworkClient()) {
+        self.networkClient = networkClient
+    }
+    
     
     private var mostPopularMoviesUrl: URL {
         guard let url = URL(string: movieUrlString + apiKey) else {
